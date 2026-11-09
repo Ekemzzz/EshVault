@@ -378,3 +378,24 @@ insert into public.extension_tags (extension_id, tag_id) values
   ('f0000000-0000-0000-0000-000000000002','e0000000-0000-0000-0000-000000000001'), -- shieldlock: privacy
   ('f0000000-0000-0000-0000-000000000005','e0000000-0000-0000-0000-000000000003')  -- copilot-canvas: ai
 on conflict (extension_id, tag_id) do nothing;
+
+-- ---------------------------------------------------------------------------
+-- Archive the invented demo extensions
+--
+-- These seven were written as sample content and have no real product behind
+-- them, so they must never appear in the catalogue. The upsert above publishes
+-- every seeded row, so this statement runs last and re-hides them on every
+-- re-seed. Their browser rows, tags and reviews stay in place as harmless
+-- orphans, and restoring one is a single UPDATE back to 'published'.
+-- ---------------------------------------------------------------------------
+update public.extensions
+set status = 'archived'
+where slug in (
+  'velocity-tabs',
+  'devscope',
+  'copilot-canvas',
+  'cartwatch',
+  'focus-flow',
+  'color-pickr',
+  'vaultpass'
+);
