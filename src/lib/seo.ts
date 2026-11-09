@@ -9,6 +9,9 @@ import { useEffect } from 'react'
 
 const APP_NAME = 'EshVault'
 
+/** Social preview image, used whenever a page does not pass its own. */
+const DEFAULT_IMAGE = '/og-cover.jpg'
+
 export interface PageMeta {
   /** Human title. Pass APP_NAME itself for the homepage. */
   title: string
@@ -54,19 +57,18 @@ export function usePageMeta(meta: PageMeta): void {
     upsertMeta('property', 'og:type', type)
     upsertMeta('property', 'og:site_name', APP_NAME)
     upsertMeta('property', 'og:url', canonical)
-    upsertMeta('name', 'twitter:card', image ? 'summary_large_image' : 'summary')
+    upsertMeta('name', 'twitter:card', 'summary_large_image')
     if (description) {
       upsertMeta('name', 'description', description)
       upsertMeta('property', 'og:description', description)
       upsertMeta('name', 'twitter:description', description)
     }
-    if (image) {
-      const abs = image.startsWith('http') || image.startsWith('/')
-        ? image
-        : window.location.origin + '/' + image
-      upsertMeta('property', 'og:image', abs)
-      upsertMeta('name', 'twitter:image', abs)
-    }
+    const ogImage = image ?? DEFAULT_IMAGE
+    const absolute = /^https?:\/\//.test(ogImage)
+      ? ogImage
+      : new URL(ogImage, window.location.origin).href
+    upsertMeta('property', 'og:image', absolute)
+    upsertMeta('name', 'twitter:image', absolute)
     upsertMeta('name', 'robots', noindex ? 'noindex,nofollow' : 'index,follow')
   }, [title, description, image, type, noindex])
 }

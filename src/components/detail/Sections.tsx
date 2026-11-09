@@ -31,6 +31,7 @@ import type {
   Review,
 } from '@/types'
 import { cn } from '@/utils/cn'
+import { isRealSiteUrl, isStoreListing } from '@/utils/installLinks'
 
 /* ==================== Overview ==================== */
 
@@ -83,53 +84,64 @@ interface InstallProps {
 }
 
 export function InstallationLinks({ extension }: InstallProps) {
-  const links = extension.installLinks ?? []
-  if (links.length === 0) {
-    return (
-      <section
-        aria-labelledby="install-heading"
-        className="rounded-2xl border border-border bg-card p-4 xs:p-5"
-      >
-        <h2 id="install-heading" className="text-lg font-semibold">
-          Installation
-        </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          No store links have been recorded for this extension yet.
-        </p>
-      </section>
-    )
-  }
+  // Drop links that are missing the store identifier they need to resolve, and
+  // offer the official site instead of a button that leads to a 404.
+  const storeLinks = (extension.installLinks ?? []).filter((link) => isStoreListing(link.url))
+  const siteUrl =
+    extension.websiteUrl && isRealSiteUrl(extension.websiteUrl) ? extension.websiteUrl : undefined
+
   return (
     <section aria-labelledby="install-heading" className="rounded-2xl border border-border bg-card p-4 xs:p-5">
       <h2 id="install-heading" className="text-lg font-semibold">
-        Install for your browser
+        {storeLinks.length > 0 ? 'Install for your browser' : 'Installation'}
       </h2>
-      <div className="mt-4 grid grid-cols-1 gap-2 xs:grid-cols-2">
-        {links.map((link) => {
-          const meta = allBrowsers.find((b) => b.slug === link.browser)
-          const label = meta ? `Get it on ${meta.label}` : 'Open store'
-          return (
-            <a
-              key={link.browser}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              data-install-browser={link.browser}
-              className={buttonStyles(
-                'primary',
-                'sm',
-                // Full-width, 44px-tall store buttons on phones: the label
-                //  alone (“Get it on Microsoft Edge”) would otherwise wrap the row awkwardly.
-                'min-h-[44px] w-full justify-center whitespace-normal text-center xs:w-auto',
-              )}
-            >
-              <BrowserLogo browser={link.browser} className="h-4 w-4" />
-              {label}
-              <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-            </a>
-          )
-        })}
-      </div>
+
+      {storeLinks.length > 0 ? (
+        <div className="mt-4 grid grid-cols-1 gap-2 xs:grid-cols-2">
+          {storeLinks.map((link) => {
+            const meta = allBrowsers.find((b) => b.slug === link.browser)
+            const label = meta ? `Get it on ${meta.label}` : 'Open store'
+            return (
+              <a
+                key={link.browser}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                data-install-browser={link.browser}
+                className={buttonStyles(
+                  'primary',
+                  'sm',
+                  // Full-width, 44px-tall store buttons on phones: the label
+                  //  alone (“Get it on Microsoft Edge”) would otherwise wrap the row awkwardly.
+                  'min-h-[44px] w-full justify-center whitespace-normal text-center xs:w-auto',
+                )}
+              >
+                <BrowserLogo browser={link.browser} className="h-4 w-4" />
+                {label}
+                <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+              </a>
+            )
+          })}
+        </div>
+      ) : (
+        <p className="mt-2 text-sm text-muted-foreground">
+          {siteUrl
+            ? 'No store listing is available for this extension yet. Download it from the official site.'
+            : 'No download link has been added for this extension yet.'}
+        </p>
+      )}
+
+      {siteUrl && (
+        <a
+          href={siteUrl}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          className={buttonStyles('outline', 'sm', 'mt-3 min-h-[44px] w-full justify-center xs:w-auto')}
+        >
+          Visit official site
+          <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+        </a>
+      )}
     </section>
   )
 }

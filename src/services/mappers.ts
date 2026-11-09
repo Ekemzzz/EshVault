@@ -28,7 +28,7 @@ function safeFeatures(v: unknown): ExtensionFeature[] {
 
 // Convert a flattened `published_extensions` view row into the UI model.
 export function mapPublishedExtension(row: PublishedExtension): Extension {
-  const name = row.slug === 'color-pickr' ? 'Color Picker' : row.name
+  const name = row.name
   const author: ExtensionAuthor | undefined =
     row.author_id != null
       ? {
