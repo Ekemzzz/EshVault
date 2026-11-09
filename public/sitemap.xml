@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Static sitemap for the current published catalog. Regenerate this list when
+  extensions are added/removed (the slugs below match the seeded catalog), and
+  replace https://YOUR-DOMAIN.example with the real production host at deploy.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://YOUR-DOMAIN.example/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/browse</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/categories</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/submit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/about</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+
+  <url><loc>https://YOUR-DOMAIN.example/categories/productivity</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/categories/security</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/categories/design</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/categories/development</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/categories/ai</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/categories/shopping</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/categories/social</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+
+  <url><loc>https://YOUR-DOMAIN.example/extensions/velocity-tabs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/devscope</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/copilot-canvas</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/cartwatch</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/focus-flow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/color-pickr</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/vaultpass</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/react-developer-tools</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/requestly</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/axe-devtools</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/cookie-editor</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/google-keep</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/onetab</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/todoist</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/notion-web-clipper</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/bitwarden</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/ublock-origin-lite</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/adguard</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/monica</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/sider</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/merlin</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/harpa-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/perfectpixel</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/muzli</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/colorzilla</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/capital-one-shopping</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/keepa</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/coupert</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/buffer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/hunter</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR-DOMAIN.example/extensions/seoquake</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+</urlset>

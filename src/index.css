@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ *
+ * Design system tokens (light + dark): warm neutral palette
+ * Referenced by tailwind.config.js via hsl(var(--token))
+ * ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 24 12% 15%;
+
+    --card: 40 40% 100%;
+    --card-foreground: 24 12% 15%;
+
+    --primary: 24 82% 52%;
+    --primary-foreground: 40 40% 99%;
+
+    --secondary: 40 22% 92%;
+    --secondary-foreground: 24 15% 22%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 24 8% 46%;
+
+    --accent: 32 65% 90%;
+    --accent-foreground: 24 20% 22%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 40 16% 87%;
+    --input: 40 16% 87%;
+    --ring: 24 82% 52%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 24 14% 9%;
+    --foreground: 40 30% 96%;
+
+    --card: 24 13% 12%;
+    --card-foreground: 40 30% 96%;
+
+    --primary: 24 82% 58%;
+    --primary-foreground: 24 40% 10%;
+
+    --secondary: 24 12% 18%;
+    --secondary-foreground: 40 25% 92%;
+
+    --muted: 24 12% 16%;
+    --muted-foreground: 40 12% 65%;
+
+    --accent: 26 40% 22%;
+    --accent-foreground: 40 30% 96%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 24 12% 20%;
+    --input: 24 12% 20%;
+    --ring: 24 82% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (max-width: 640px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-2 rounded-md font-medium
+      transition-colors focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background
+      disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+      focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
