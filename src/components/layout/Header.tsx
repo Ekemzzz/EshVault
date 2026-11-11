@@ -98,7 +98,7 @@ export function Header() {
               </NavLink>
             ))}
 
-            {/* Account section (mobile) — mirrors the desktop AccountMenu. */}
+            {/* Account section (mobile), mirrors the desktop AccountMenu. */}
             <div className="mt-2 border-t border-border/60 pt-2">
               {status === 'signed-in' ? (
                 <>
@@ -148,7 +148,7 @@ export function Header() {
 }
 
 // 
-//   Plain styled link for the mobile drawer account section. No onClick — the
+//   Plain styled link for the mobile drawer account section. No onClick, the
 //   location-change effect at the top of Header closes the drawer on nav.
 //  
 
