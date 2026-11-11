@@ -10,7 +10,7 @@ export default {
   },
   theme: {
     // Tailwind only emits `container.padding` steps for the screens listed
-    // below — with a single 1400px cap that means no responsive padding, so
+    // below, with a single 1400px cap that means no responsive padding, so
     // the xs/sm/lg side padding is applied by the Container component.
     container: {
       center: true,
