@@ -19,13 +19,6 @@
   <url><loc>https://YOUR-DOMAIN.example/categories/shopping</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://YOUR-DOMAIN.example/categories/social</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
 
-  <url><loc>https://YOUR-DOMAIN.example/extensions/velocity-tabs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.example/extensions/devscope</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.example/extensions/copilot-canvas</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.example/extensions/cartwatch</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.example/extensions/focus-flow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.example/extensions/color-pickr</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.example/extensions/vaultpass</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://YOUR-DOMAIN.example/extensions/react-developer-tools</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://YOUR-DOMAIN.example/extensions/requestly</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://YOUR-DOMAIN.example/extensions/axe-devtools</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
