@@ -40,59 +40,6 @@ function makeInstallLinks(
 /* ---------------- Detail records ----------------------------------------- */
 
 export const extensionDetails: Record<string, ExtensionDetail> = {
-  'velocity-tabs': {
-    features: [
-      { title: 'Fuzzy tab search', description: 'Reach any open tab in under a second.' },
-      { title: 'Session save & restore', description: 'Snapshot every window as a named session.' },
-      { title: 'Auto-suspend idle tabs', description: 'Reclaim RAM from tabs you are not looking at.' },
-      { title: 'Keyboard-first', description: 'Vim-like bindings for switching, closing and grouping.' },
-    ],
-    permissions: [
-      { label: 'Read browsing history', description: 'Used to power fuzzy tab search and recency ordering.' },
-      { label: 'Access tab information', description: 'Required to suspend and restore tabs.' },
-      { label: 'Storage (local)', description: 'Persists sessions and preferences on your device.' },
-    ],
-    installLinks: makeInstallLinks('velocity-tabs', ['chrome', 'edge', 'opera']),
-    reviews: [
-      {
-        id: 'r-velocity-1',
-        authorName: 'Mika L.',
-        rating: 5,
-        title: 'Replaced my tab manager',
-        body: 'I run 100+ tabs daily and Velocity Tabs is the first thing that made that actually manageable. Search is instant.',
-        createdAt: '2026-08-12T00:00:00.000Z',
-      },
-      {
-        id: 'r-velocity-2',
-        authorName: 'Priya R.',
-        rating: 4,
-        title: 'Great, small learning curve',
-        body: 'Keyboard shortcuts took a week to stick, but now I never touch the mouse to switch tabs.',
-        createdAt: '2026-06-02T00:00:00.000Z',
-      },
-    ],
-  },
-  devscope: {
-    features: [
-      { title: 'Inline network inspector' },
-      { title: 'localStorage editor' },
-      { title: 'API preview panel' },
-    ],
-    permissions: [
-      { label: 'Read tab data', description: 'Needed to attach the network inspector.' },
-      { label: 'Modify storage', description: 'Enables the localStorage editor.' },
-    ],
-    installLinks: makeInstallLinks('devscope', ['chrome', 'edge', 'firefox']),
-    reviews: [
-      {
-        id: 'r-dev-1',
-        authorName: 'Ilya M.',
-        rating: 4,
-        body: 'The storage editor alone is worth it. Would like a request replay feature next.',
-        createdAt: '2026-05-04T00:00:00.000Z',
-      },
-    ],
-  },
   'react-developer-tools': {
     features: [
       { title: 'Component tree inspection' },
@@ -710,124 +657,10 @@ export const extensionDetails: Record<string, ExtensionDetail> = {
       },
     ],
   },
-  'copilot-canvas': {
-    features: [
-      { title: 'Rewrite, translate, summarise' },
-      { title: 'Bring your own model' },
-      { title: 'Works in any textarea' },
-    ],
-    permissions: [
-      { label: 'Read and change all your data on websites', description: 'Only reads textarea content on demand.' },
-      { label: 'Network access (your API keys)', description: 'Sends selected text to your chosen model provider.' },
-    ],
-    installLinks: makeInstallLinks('copilot-canvas', ['chrome', 'edge']),
-    reviews: [
-      {
-        id: 'r-copilot-1',
-        authorName: 'Tomas F.',
-        rating: 4,
-        body: 'Featherweight, respects BYO model, and does not send anything without a click.',
-        createdAt: '2026-08-28T00:00:00.000Z',
-      },
-    ],
-  },
-  cartwatch: {
-    features: [
-      { title: 'Automatic coupon hunting' },
-      { title: 'Price-drop alerts' },
-      { title: 'Wishlist tracking' },
-    ],
-    permissions: [
-      { label: 'Read shopping site data', description: 'Only on supported stores, on demand.' },
-      { label: 'Storage (sync)', description: 'Keeps your wishlist across signed-in devices.' },
-    ],
-    installLinks: makeInstallLinks('cartwatch', ['chrome', 'firefox', 'edge', 'opera']),
-    reviews: [
-      {
-        id: 'r-cart-1',
-        authorName: 'Bea V.',
-        rating: 4,
-        body: 'Saved me about $80 across two months. No-brainer install.',
-        createdAt: '2026-07-30T00:00:00.000Z',
-      },
-    ],
-  },
-  'focus-flow': {
-    features: [
-      { title: 'Time-box distracting sites' },
-      { title: 'Deep-work mode scheduling' },
-      { title: 'Notification silencing' },
-    ],
-    permissions: [
-      { label: 'Read browsing history', description: 'Matches sites against your block list.' },
-    ],
-    installLinks: makeInstallLinks('focus-flow', ['chrome', 'firefox', 'safari']),
-    reviews: [
-      {
-        id: 'r-focus-1',
-        authorName: 'Sam O.',
-        rating: 5,
-        title: 'Genuinely helped',
-        body: 'The scheduling keeps my evenings off social media without me having to decide.',
-        createdAt: '2026-09-15T00:00:00.000Z',
-      },
-    ],
-  },
-  'color-pickr': {
-    features: [
-      { title: 'Eyedropper over images, video and page' },
-      { title: 'Palette export (CSS, JSON)' },
-      { title: 'Copy as HEX / RGB / HSL' },
-    ],
-    permissions: [
-      { label: 'Read and change all your data on websites', description: 'Only used to sample pixel colour from the current page.' },
-    ],
-    installLinks: makeInstallLinks('color-pickr', ['chrome', 'edge']),
-    reviews: [
-      {
-        id: 'r-color-1',
-        authorName: 'Kia N.',
-        rating: 4,
-        body: 'Simple and fast. Would love a colour-blind-safe palette suggestion mode.',
-        createdAt: '2026-08-05T00:00:00.000Z',
-      },
-    ],
-  },
-  vaultpass: {
-    features: [
-      { title: 'Zero-knowledge passkey generation' },
-      { title: 'End-to-end encrypted vault' },
-      { title: 'Autofill with biometric unlock' },
-    ],
-    permissions: [
-      { label: 'Read and change all your data on websites', description: 'Required to fill credentials on sign-in forms.' },
-      { label: 'Native messaging', description: 'Communicates with the local VaultPass agent for encryption.' },
-    ],
-    installLinks: makeInstallLinks('vaultpass', ['chrome', 'firefox', 'edge', 'safari', 'opera']),
-    reviews: [
-      {
-        id: 'r-vault-1',
-        authorName: 'Nora S.',
-        rating: 5,
-        body: 'Migration from my old manager was one-click and everything was where I expected it.',
-        createdAt: '2026-10-02T00:00:00.000Z',
-      },
-      {
-        id: 'r-vault-2',
-        authorName: 'Rob J.',
-        rating: 4,
-        title: 'Solid, occasional slow unlock',
-        body: 'Rarely, biometric unlock takes a beat longer than I want. Everything else is spot-on.',
-        createdAt: '2026-08-22T00:00:00.000Z',
-      },
-    ],
-  },
 }
 
 /** Screenshot placeholder metadata (used only when Supabase isn't configured). */
 export const screenshotCountBySlug: Record<string, number> = {
-  'velocity-tabs': 3,
-  devscope: 2,
   'react-developer-tools': 3,
   requestly: 2,
   'axe-devtools': 3,
@@ -839,11 +672,6 @@ export const screenshotCountBySlug: Record<string, number> = {
   bitwarden: 2,
   'ublock-origin-lite': 3,
   adguard: 2,
-  'copilot-canvas': 3,
-  cartwatch: 2,
-  'focus-flow': 2,
-  'color-pickr': 3,
-  vaultpass: 2,
   monica: 3,
   sider: 2,
   merlin: 3,
