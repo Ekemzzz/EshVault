@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Bookmark, BookmarkCheck } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
@@ -34,7 +34,6 @@ import type { Extension, Review } from '@/types'
 
 interface Data {
   extension: Extension | null
-  reviews: Review[]
   alternatives: Extension[]
 }
 
@@ -46,10 +45,19 @@ export function ExtensionDetail() {
   const navigate = useNavigate()
   const { status } = useAuth()
   const [data, setData] = useState<Data | undefined>(undefined)
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [attempt, setAttempt] = useState(0)
   const [error, setError] = useState<string | undefined>(undefined)
   const [saved, setSaved] = useState(false)
   const [saveBusy, setSaveBusy] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
+
+  // Auth state the visible reviews were last fetched for; lets the mount
+  // effect and the auth-settle effect split the work instead of both
+  // fetching the same list on every page load.
+  const statusRef = useRef(status)
+  statusRef.current = status
+  const reviewsStatusRef = useRef<string | null>(null)
 
   // Per-extension document title/description + social preview card once loaded.
   const detail = data?.extension
@@ -67,10 +75,20 @@ export function ExtensionDetail() {
     setError(undefined)
     setSaved(false)
     setSaveError(null)
-    Promise.all([getExtensionBySlug(slug), getReviews(slug), getAlternatives(slug)])
+    setReviews([])
+    // Signed-out viewers get reviews straight from this effect; signed-in or
+    // still-hydrating sessions get exactly one fetch from the auth effect.
+    const prefetch = statusRef.current === 'signed-out'
+    reviewsStatusRef.current = prefetch ? 'signed-out' : null
+    Promise.all([
+      getExtensionBySlug(slug),
+      prefetch ? getReviews(slug) : Promise.resolve([] as Review[]),
+      getAlternatives(slug),
+    ])
       .then(([ext, revs, alts]) => {
         if (cancelled) return
-        setData({ extension: ext, reviews: revs, alternatives: alts })
+        setData({ extension: ext, alternatives: alts })
+        if (prefetch) setReviews(revs)
       })
       .catch((err: unknown) => {
         if (cancelled) return
@@ -79,16 +97,19 @@ export function ExtensionDetail() {
     return () => {
       cancelled = true
     }
-  }, [slug])
+  }, [slug, attempt])
 
   // getReviews embeds viewer state (isMine / isVoted), which is only correct
-  // once the auth session has hydrated, refresh the list when status settles.
+  // once the auth session has hydrated, so refresh when status settles into
+  // a state the current list was not already fetched for.
   useEffect(() => {
-    if (status === 'loading') return
+    if (status === 'loading' || status === reviewsStatusRef.current) return
     let cancelled = false
     getReviews(slug)
       .then((revs) => {
-        if (!cancelled) setData((d) => (d ? { ...d, reviews: revs } : d))
+        if (cancelled) return
+        reviewsStatusRef.current = status
+        setReviews(revs)
       })
       .catch(() => {
       })
@@ -98,8 +119,7 @@ export function ExtensionDetail() {
   }, [slug, status])
 
   const reloadReviews = useCallback(async () => {
-    const revs = await getReviews(slug)
-    setData((d) => (d ? { ...d, reviews: revs } : d))
+    setReviews(await getReviews(slug))
   }, [slug])
 
   const extensionId = data?.extension?.id
@@ -147,6 +167,12 @@ export function ExtensionDetail() {
       <Container className="py-12 xs:py-16 text-center">
         <h1 className="text-2xl font-bold xs:text-3xl">Something went wrong</h1>
         <p className="mt-2 break-words text-muted-foreground">{error}</p>
+        <div className="mt-6 flex justify-center gap-3">
+          <Button onClick={() => setAttempt((a) => a + 1)}>Try again</Button>
+          <Button variant="outline" onClick={() => navigate('/browse')}>
+            Back to browse
+          </Button>
+        </div>
       </Container>
     )
   }
@@ -215,7 +241,7 @@ export function ExtensionDetail() {
             <FeaturesSection features={ext.features ?? []} />
             <PrivacyPermissionsSection permissions={ext.permissions ?? []} />
             <ReviewsSection
-              reviews={data.reviews}
+              reviews={reviews}
               canInteract={signedIn && isSupabaseConfigured}
               showSignIn={status === 'signed-out' && isSupabaseConfigured}
               onSubmit={async (draft) => {
