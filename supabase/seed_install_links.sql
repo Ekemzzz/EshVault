@@ -35,6 +35,7 @@ from (values
     ('bitwarden', 'edge', 'https://microsoftedge.microsoft.com/addons/detail/jbkfoedolllekgbhcbcoahefnbanhhlh'),
     ('buffer', 'chrome', 'https://chromewebstore.google.com/detail/buffer/noojglkidnpfjbincgijbaiedldjfbhh'),
     ('buffer', 'firefox', 'https://addons.mozilla.org/firefox/addon/buffer-for-firefox/'),
+    ('capital-one-shopping', 'chrome', 'https://chromewebstore.google.com/detail/capital-one-shopping-save/nenlahapcbofgnanklpelkaejcehkggg'),
     ('capital-one-shopping', 'firefox', 'https://addons.mozilla.org/firefox/addon/wikibuy-for-firefox/'),
     ('capital-one-shopping', 'edge', 'https://microsoftedge.microsoft.com/addons/detail/capital-one-shopping-sav/kiiaghlmeikbpmeabhilfphikfcefljn'),
     ('colorzilla', 'chrome', 'https://chromewebstore.google.com/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp'),
@@ -89,8 +90,8 @@ join public.browsers b on b.slug = v.browser
 on conflict (extension_id, browser_id)
 do update set install_url = excluded.install_url;
 
--- Expect 60 of 68 browser pairs filled: every published extension now shows at
--- least one store button, and the eight gaps are browsers with no official
+-- Expect 61 of 68 browser pairs filled: every published extension now shows at
+-- least one store button, and the seven gaps are browsers with no official
 -- listing for that product.
 select count(*) filter (where install_url is not null) as linked,
        count(*) as total
